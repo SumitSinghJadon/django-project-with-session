@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+   
+
+</head>
+<body>
+
+  <header style="z-index: 1;"  class="nav_head">
+    
+  {% if userdata.username %}  
+
+
+<!-- Navbar -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <!-- Container wrapper -->
+  <div class="container-fluid">
+    <!-- Navbar brand -->
+    <a class="navbar-brand" href="{% url 'home'%}"><img style="width: 50px; height: 50px; border-radius: 50px;  margin-left: 10px;" src="{% static 'images/th.jpeg' %}" alt=""></a>
+
+    <!-- Toggle button -->
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+      data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <i class="fas fa-bars text-light"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
+        <li class="nav-item text-center mx-2 mx-lg-1">
+          <a class="nav-link active" aria-current="page" href="{% url 'home'%}">
+            Home
+          </a>
+        </li>
+        <li class="nav-item text-center mx-2 mx-lg-1">
+          <a class="nav-link" href="{% url 'about'%}">
+            About
+          </a>
+        </li>
+        <li class="nav-item text-center mx-2 mx-lg-1">
+          <a class="nav-link" href="{% url 'dashboard'%}">
+            dashboard
+          </a>
+        </li>
+
+      <!-- Left links -->
+
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
+  
+        <li class="nav-item text-center mx-2 mx-lg-1">
+          <a class="nav-link" href="{% url 'logout'%}">
+            logout
+          </a>
+        </li>
+      <!-- Right links -->
+
+      <!-- Search form -->
+      <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0" style="margin-left: 400px;">
+        <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+        <button style="height: 40px;" class="btn btn-primary" type="button" data-mdb-ripple-color="dark">
+          Search
+        </button>
+      </form>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <img style="width: 30px; height: 30px; border-radius: 50px;  margin-left: 10px;" src="{% static 'images/R.jpeg' %}" alt="">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#">user: {{userdata.username}}</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+    </ul>
+    
+    <!-- Collapsible wrapper -->
+  </div>
+</nav>
+
+{% else %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="{% url 'home'%}"><img style="width: 50px; height: 50px; border-radius: 50px;  margin-left: 10px;" src="{% static 'images/th.jpeg' %}" alt=""></a>
+  
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fas fa-bars text-light"></i>
+      </button>
+  
+      <!-- Collapsible wrapper -->
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Left links -->
+        <ul class="navbar-nav me-auto d-flex flex-row mt-3 mt-lg-0">
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link active" aria-current="page" href="{% url 'home'%}">
+              Home
+            </a>
+          </li>
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link" href="{% url 'about'%}">
+              About
+            </a>
+          </li>
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link" href="{% url 'dashboard'%}">
+              dashboard
+            </a>
+          </li>
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link" href="{% url 'registration'%}" >
+              Registration
+            </a>
+          </li>
+            
+        <!-- Left links -->
+  
+        <!-- Right links -->
+        <ul class="navbar-nav ms-auto d-flex flex-row mt-3 mt-lg-0">
+    
+          <li class="nav-item text-center mx-2 mx-lg-1">
+            <a class="nav-link" href="{% url 'login'%}">
+              Login
+            </a>
+          </li>
+        <!-- Right links -->
+  
+        <!-- Search form -->
+        <form class="d-flex input-group w-auto ms-lg-3 my-3 my-lg-0" style="margin-left: 400px;">
+          <input type="search" class="form-control" placeholder="Search" aria-label="Search" />
+          <button style="height: 40px;" class="btn btn-primary" type="button" data-mdb-ripple-color="dark">
+            Search
+          </button>
+        </form>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img style="width: 30px; height: 30px; border-radius: 50px;  margin-left: 10px;" src="{% static 'images/R.jpeg' %}" alt="">
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">user: guest</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      </div>
+      <!-- Collapsible wrapper -->
+    </div>
+  </nav>
+  <!-- Navbar -->
+    {% endif %}
+  </header>
+
+    {% block content %}
+
+    {% endblock %}
+
+<div>        
+<footer  class="mainfooter">
+  <div class="footerdiv1">
+          <h2 >Subscribe to our email alerts!</h2>
+     <input type="email" id="footeremail" name="email" placeholder="Enter your email address"/>
+  </div>
+  <div class="footerdiv2">
+   <ul>
+      <li><h3>Shop</h3></li>
+      <li>Rajputana Fashion</li>
+      <li>Traditional Jodhpuri</li>
+      <li>Jodhpuri Safa</li>
+      <li>Rajputi Poshak Female</li>
+      <li>Rajputana Sword</li>
+      <li>Half-Hunting Jackets </li>
+   </ul>
+   <div class="foterminidiv">
+       <ul>
+           <li>Footwear</li>
+           <li>Sherwani / Achkan</li>
+           <li>Shirts</li>
+           <li>Rajputi Button</li>
+           <li>Silver Rajput Sword</li>
+       </ul>
+   </div>
+  </div>
+  <div class="footerdiv3">
+     <ul>
+        <li><h3>Help</h3></li> 
+        <li>Track Your Order</li>
+        <li>Return Policy</li>
+        <li>Service Centers</li>
+        <li>Bulk Orders</li>
+        <li>FAQs</li>
+        <li>Why Buy Direct</li>
+     </ul>
+  </div>
+  <div class="footerdiv4">
+       <ul>
+         <li><h3>Company</h3></li>
+         <li>About Rajputana Fashion</li>
+         <li>News</li>
+         <li>Read Our Blog</li>
+         <li>Careers</li>
+         <li>Security</li>
+         <li>Investor Relations</li>
+         <li>Social Responsibility</li>
+         <li>Warranty Policy</li>
+       </ul>
+  </div>
+</footer>
+    
+  <footer class="lastfooter">
+     <div class="lastfooterdiv">
+        <ul>
+           <li class="lets">Let's get social</li>
+           <li><a href="#"><i class="fa-brands fa-facebook"></i></a></li>
+           <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+           <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+           <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+           <li><a href="#"></a></li>
+        </ul>
+     </div>
+     <div class="lastfooterdiv2">
+       <ul>
+           <li>Privacy Policy . Terms & Conditions</li>
+       </ul>
+    </div>
+    <div class="lastfooterdiv3">
+       <ul>
+           <li>© 2023 Imagine Marketing Limited. All Rights Reserved.</li>
+       </ul>
+    </div>
+     <div class="lastfooterdiv3">
+        <ul>
+           <li>For queries contact us: Manager, Imagine Marketing Limited Unit no. 204 & 205, 2nd floor, D-wing & E-wing,</li>
+           <li>Corporate Avenue, Andheri Ghatkopar Link Road, Mumbai, Maharashtra-400093, India</li>
+        </ul>
+     </div>
+ </footer>
+ <div>
+  
+       
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

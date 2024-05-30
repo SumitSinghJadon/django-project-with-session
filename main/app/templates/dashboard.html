@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+   
+</head>
+<body>
+    
+    <div style="width: 400px; height: 100px;">
+    {% if userdata.username %}
+    <h1>welcome : {{userdata.username}} </h1>
+    {% else %}
+    <h1>welcome : Guest</h1>
+    {% endif%}
+    </div>
+
+ {% if dataEdit %}
+ <div id="Notes_main_div">
+    <form action="{% url 'updatenote' pk=dataEdit.id %}" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+    <label for="title">Titel:</label>
+    <input type="text" class="form-control" name="title" value="{{dataEdit.Title}}">
+    </div>
+    <div class="form-group">
+    <label for="note">Your Note:</label>
+    <textarea type="text" class="form-control" name="note">{{dataEdit.Note}}</textarea>
+    </div>
+    <input type="text" name="email" hidden value="{{userdata.email}}">
+    <input type="text" name="password" hidden value="{{userdata.password}}">
+    <br><br>
+    <button class="btn3 btn-primary" type="submit">Update</button>
+    </form>
+</div>
+
+  {% else %}
+    <div id="Notes_main_div">
+        <form action="{% url 'submitnote' %}" method="post">
+        {% csrf_token %}
+      <div style="width: 300px; ">
+        <label for="title">Titel:</label>
+        <input type="text" class="form-control" name="title" required>
+      </div>
+      <div style="width: 300px;">
+        <label for="note">Your Note:</label>
+        <textarea type="text" class="form-control" name="note"></textarea>
+      </div>
+        <input type="text" name="email"  hidden value="{{userdata.email}}">
+        <input type="text" name="password" hidden value="{{userdata.password}}">
+       <br>
+        <button class="btn3 btn-primary" type="submit">submit</button>
+        </form>
+       <br>
+        <form action="{% url 'shownotes' %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="email" hidden value="{{userdata.email}}">
+            <input type="text" name="password" hidden value="{{userdata.password}}">
+            <button class="btn3 btn-primary" type="submit">Show Data</button>
+        </form>
+
+    </div>
+
+{% endif%}
+
+<div id="data_filter" >
+    <form action="{% url 'filter' %}" method="post">
+        {% csrf_token %}
+        <input  type="text" name="email" hidden value="{{userdata.email}}" required>
+        <input style="height: 23px; width: 120px;" type="date"  name="startdate" required>
+        <input style="height: 23px; width: 120px;" type="date" name="enddate" required>
+        <button type="submit">filter</button>
+    </form>
+</div>
+    
+<div >
+    <div style="width: auto;">
+ <table  class="table" border="2">
+    {% if key %}
+    <thead class="thead-dark">
+    <tr >
+        <th scope="col">Date</th>
+        <th scope="col">Title</th>
+        <th scope="col">Your Note</th>
+        <th scope="col">Email</th>
+        <th scope="col">edit</th>
+        <th scope="col">delete</th>
+    </tr>
+  </thead>
+    {% for i in key %}
+    <tr>
+        <td>{{ i.Date }}</td>
+        <td>{{ i.Title }}</td>
+        <td>{{ i.Note }}</td>
+        <td>{{ i.Email }}</td>
+        <td><form action="{% url 'Edit' pk=i.id %}"   method="post">
+            {% csrf_token %}
+            <input type="text" name="email" hidden value="{{userdata.email}}">
+            <input type="text" name="password" hidden value="{{userdata.password}}">
+            <button type="submit">Edit</button>
+            </form></td>
+        <td><form action="{% url 'delete' pk=i.id %}" method="post">
+            {% csrf_token %}
+            <input type="text" name="email" hidden value="{{userdata.email}}">
+            <input type="text" name="password" hidden value="{{userdata.password}}">
+            <button type="submit">Delete</button>
+            </form></td>
+
+    </tr>
+    {% endfor %}
+    
+{% else %}
+
+     <h4>No notes found</h4>
+    {% endif %}
+ </table>
+</div>
+ </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+{% endblock  %} 
+</body>
+</html>
